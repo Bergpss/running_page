@@ -29,7 +29,7 @@ const data: ISiteMetadataResult = {
       url: 'https://blog.guoyibo.top',
     },
     {
-      name: 'About',
+      name: 'About Me',
       url: 'https://guoyibo.top',
     },
   ],
