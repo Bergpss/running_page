@@ -237,6 +237,24 @@ jobs:
           pip install duckdb==1.1.0
           python run_page/save_to_parqent.py
 
+      - name: Setup Node.js for formatting
+        if: env.RUN_TYPE != 'pass' && env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Enable corepack
+        if: env.RUN_TYPE != 'pass' && env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+        run: npm install -g corepack@latest && corepack enable pnpm
+
+      - name: Install pnpm dependencies
+        if: env.RUN_TYPE != 'pass' && env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Format generated files with Prettier
+        if: env.RUN_TYPE != 'pass' && env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
+        run: pnpm run format
+
       - name: Push new runs
         if: env.SAVE_DATA_IN_GITHUB_CACHE != 'true'
         run: |
