@@ -2,9 +2,9 @@ name: Run Data Sync
 
 on:
   workflow_dispatch: 
-  schedule:
+  # schedule:
     # Run at midnight(00:00) every day
-    - cron: '0 0 * * *'
+    # - cron: '0 0 * * *'
   push:
     branches:
       - master
